@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TasteMatch MVP</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="container header">
+    <h1>TasteMatch</h1>
+    <button id="startBtn">Начать</button>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h2>Найди человека, с кем вкусно жить</h2>
+      <p>Знакомства по кулинарным предпочтениям для аудитории 30+.</p>
+    </section>
+
+    <section class="card">
+      <h3>Мини-онбординг</h3>
+      <label>Любимая кухня:</label>
+      <select id="cuisine">
+        <option>Итальянская</option>
+        <option>Японская</option>
+        <option>Грузинская</option>
+        <option>Русская</option>
+      </select>
+
+      <label>Формат отношений:</label>
+      <select id="intent">
+        <option>Серьёзные</option>
+        <option>Общение</option>
+      </select>
+
+      <button id="matchBtn">Найти мэтч</button>
+      <p id="result"></p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
