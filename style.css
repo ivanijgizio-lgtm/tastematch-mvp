@@ -1,59 +1,78 @@
+/* Кастомные переменные Pico */
+:root {
+  --pico-primary: #ff7a59;
+  --pico-primary-background: #ff7a59;
+  --pico-primary-hover: #e56b4d;
+  --pico-border-radius: 1.25rem;
+  --pico-font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* Фон и общая атмосфера */
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #0f1115;
-  color: #f4f6fb;
+  background: linear-gradient(145deg, #0b0e12 0%, #1a1f26 100%);
+  min-height: 100vh;
 }
 
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 16px;
+/* Хедер */
+header.container-fluid {
+  backdrop-filter: blur(8px);
+  background: rgba(23, 26, 33, 0.8);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-h1 { margin: 0; }
-
-button {
-  background: #ff7a59;
-  color: #111;
-  border: none;
-  border-radius: 10px;
-  padding: 10px 14px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
+/* Hero-секция с градиентом */
 .hero {
-  margin: 30px 0;
-  padding: 20px;
-  background: #171a21;
-  border-radius: 14px;
+  text-align: center;
+  padding: 3rem 2rem;
+  margin: 2rem 0;
+  background: radial-gradient(circle at top right, #2a2f3a, #171a21);
+  border-radius: 2rem;
+  box-shadow: 0 20px 35px -5px rgba(0,0,0,0.5);
 }
 
-.card {
-  background: #171a21;
-  border-radius: 14px;
-  padding: 20px;
-  display: grid;
-  gap: 10px;
+.hero h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ffd166, #ff9f4b);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 0.5rem;
 }
 
-select {
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #333;
-  background: #0f1115;
-  color: #fff;
+/* Карточки */
+.card, [role="article"] {
+  background: rgba(23, 26, 33, 0.8);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255,122,89,0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-#result {
-  margin-top: 10px;
-  font-weight: bold;
-  color: #ffd166;
+.card:hover, [role="article"]:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 25px 30px -12px rgba(0,0,0,0.6);
+}
+
+/* Кнопки понаряднее */
+button {
+  transition: all 0.2s;
+}
+
+button.primary {
+  background: linear-gradient(145deg, #ff8a6f, #ff6a4d);
+  border: none;
+}
+
+/* Результат поиска */
+#matchResult {
+  margin-top: 2rem;
+  background: rgba(255,122,89,0.05);
+  border-left: 4px solid var(--pico-primary);
+}
+
+/* Модалки */
+dialog article {
+  background: #1e242c;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(255,255,255,0.08);
 }
