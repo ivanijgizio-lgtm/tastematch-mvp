@@ -1,44 +1,127 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TasteMatch MVP</title>
+  <title>TasteMatch · знакомства по вкусам</title>
+  <!-- Pico.css (минималистичный вайб) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+  <!-- Наши кастомные штрихи -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="container header">
-    <h1>TasteMatch</h1>
-    <button id="startBtn">Начать</button>
+
+  <!-- Header с навигацией -->
+  <header class="container-fluid">
+    <nav>
+      <ul>
+        <li><h1>🍜 TasteMatch</h1></li>
+      </ul>
+      <ul>
+        <li><a href="#" id="showRegisterBtn">Регистрация</a></li>
+        <li><a href="#" id="showLoginBtn">Войти</a></li>
+      </ul>
+    </nav>
   </header>
 
+  <!-- Основной контент -->
   <main class="container">
+    <!-- Приветственный блок -->
     <section class="hero">
       <h2>Найди человека, с кем вкусно жить</h2>
       <p>Знакомства по кулинарным предпочтениям для аудитории 30+.</p>
+      <button id="startMatchingBtn" class="primary">🍳 Найти мэтч</button>
     </section>
 
-    <section class="card">
-      <h3>Мини-онбординг</h3>
-      <label>Любимая кухня:</label>
-      <select id="cuisine">
-        <option>Итальянская</option>
-        <option>Японская</option>
-        <option>Грузинская</option>
-        <option>Русская</option>
+    <!-- Секция поиска (скрыта по умолчанию) -->
+    <section id="matchSection" class="card" style="display: none;">
+      <h3>Что тебе по вкусу?</h3>
+      <label>Любимая кухня</label>
+      <select id="cuisineSelect">
+        <option value="italian">🇮🇹 Итальянская</option>
+        <option value="japanese">🇯🇵 Японская</option>
+        <option value="georgian">🇬🇪 Грузинская</option>
+        <option value="russian">🇷🇺 Русская</option>
+        <option value="mexican">🇲🇽 Мексиканская</option>
       </select>
 
-      <label>Формат отношений:</label>
-      <select id="intent">
-        <option>Серьёзные</option>
-        <option>Общение</option>
+      <label>Цель знакомства</label>
+      <select id="intentSelect">
+        <option value="serious">💍 Серьёзные отношения</option>
+        <option value="friendship">☕️ Общение и ужины</option>
+        <option value="adventure">🌮 Кулинарные приключения</option>
       </select>
 
-      <button id="matchBtn">Найти мэтч</button>
-      <p id="result"></p>
+      <button id="fetchMatchBtn" aria-busy="false">🔍 Искать мэтч</button>
+      
+      <!-- Результат поиска -->
+      <article id="matchResult" style="display: none;">
+        <h4>Ваш мэтч</h4>
+        <p><strong id="matchName"></strong>, <span id="matchAge"></span></p>
+        <p id="matchBio"></p>
+        <footer>
+          <button class="secondary" id="newSearchBtn">Попробовать ещё</button>
+          <button>❤️ Лайк</button>
+        </footer>
+      </article>
+      
+      <!-- Состояние загрузки -->
+      <div id="loadingIndicator" style="display: none;" aria-busy="true">Ищем идеального компаньона...</div>
     </section>
+
+    <!-- Модалка регистрации (dialog) -->
+    <dialog id="registerDialog">
+      <article>
+        <header>
+          <h3>🍕 Регистрация</h3>
+        </header>
+        <form id="registerForm">
+          <label>Имя
+            <input type="text" id="regName" required />
+          </label>
+          <label>Возраст
+            <input type="number" id="regAge" min="18" max="100" required />
+          </label>
+          <label>Любимая кухня
+            <select id="regCuisine" required>
+              <option value="italian">Итальянская</option>
+              <option value="japanese">Японская</option>
+              <option value="georgian">Грузинская</option>
+              <option value="russian">Русская</option>
+            </select>
+          </label>
+          <label>О себе
+            <textarea id="regBio" placeholder="Расскажи, что ты любишь готовить..."></textarea>
+          </label>
+          <footer>
+            <button type="button" class="secondary" data-close>Отмена</button>
+            <button type="submit">Зарегистрироваться</button>
+          </footer>
+        </form>
+      </article>
+    </dialog>
+
+    <!-- Модалка входа (для vibe) -->
+    <dialog id="loginDialog">
+      <article>
+        <header><h3>🔑 Вход</h3></header>
+        <form id="loginForm">
+          <label>Email
+            <input type="email" id="loginEmail" placeholder="demo@tastematch.ru" />
+          </label>
+          <label>Пароль
+            <input type="password" id="loginPassword" placeholder="••••••••" />
+          </label>
+          <footer>
+            <button type="button" class="secondary" data-close>Закрыть</button>
+            <button type="submit">Войти</button>
+          </footer>
+        </form>
+        <p><small>Демо-режим: введите любые данные.</small></p>
+      </article>
+    </dialog>
   </main>
 
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
